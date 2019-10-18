@@ -1,0 +1,53 @@
+#include <stdio.h>
+#include<iostream>
+using namespace std;
+
+void rotate(int ar[],int n)
+{
+    int temp;
+    temp=ar[0];
+    for(int i=0;i<n;i++)
+    {
+        ar[i]=ar[i+1];    
+    }
+    
+    ar[n-1]=temp;
+    
+    
+}
+
+void rotarray(int ar[],int n,int k)
+{
+    for(int i=0;i<k;i++)
+    {
+          rotate(ar,n); 
+    }
+}
+ void print(int ar[],int n)
+ {
+     
+     for(int i=0;i<n;i++)
+    {
+        cout<<ar[i]<<" ";    
+    }
+ }
+ 
+ int main()
+{
+    int n,k,i;
+    cout<<"enter size:\n";
+    cin>>n;
+    int ar[n];
+    cout<<"ENTER elements:\n";
+    for(int i=0;i<n;i++)
+    {
+        cin>>ar[i];  
+    }
+    
+    cout<<"Enter the place\n:";
+    cin>>k;
+    rotarray(ar,n,k);
+    print(ar,n);
+
+    return 0;
+}
