@@ -1,0 +1,66 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, PHP, Ruby, 
+C#, VB, Perl, Swift, Prolog, Javascript, Pascal, HTML, CSS, JS
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <stdio.h>
+#include<iostream>
+using namespace std;
+
+int MIN(int ar[],int k,int n)
+{
+    
+    int min=ar[k];
+    int loc=k,i;
+        
+    
+    for(i=k+1;i<n;i++)
+    {
+        if(min>ar[i])
+        {
+            min=ar[i];
+            loc=i;
+        }
+    }
+    
+    return loc;
+}
+
+void display(int ar[],int n)
+{
+    
+    for(int i=0;i<n;i++)
+    {
+        cout<<ar[i]<<" ";
+    }
+}
+
+
+
+int main()
+{
+    int n,loc,k,i,temp;
+    cout<<"Enter Number of elements:\n";
+    cin>>n;
+    int A[n];
+    cout<<"Enter elements:\n";
+    for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+    }
+   for(i=0;i<n-1;i++)
+   {
+       loc=MIN(A,i,n);
+       temp=A[i];
+       A[i]=A[loc];
+       A[loc]=temp;
+   }
+   
+   display(A,n);
+
+    return 0;
+}
+
