@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<iostream>
+using namespace std;
+
+
+int quick(int A[],int start,int end)
+{
+    int i=start+1;
+    int pivot=A[start];
+    
+    for(int j=start+1;j<=end;j++)
+    {
+        if(A[j]<pivot)
+        {
+            swap(A[j],A[i]);
+            i++;
+        }        
+    }
+    
+    swap(A[start],A[i-1]);
+    return i-1;
+    
+}
+
+void swap(int a,int b)
+{
+    int temp=a;
+    a=b;
+    b=temp;
+}
+
+void quicksort(int A[],int start,int end)
+{
+    if(start<end)
+    {
+        int piv=quick(A,start,end);
+        quicksort(A,start,piv-1);
+        quicksort(A,piv+1,end);
+    }
+}
+
+
+
+int main()
+{
+    int n,i;
+    cout<<"enter size:\n";
+    cin>>n;
+    int ar[n];
+    cout<<"ENTER elements:\n";
+    for(i=0;i<n;i++)
+    {
+        cin>>ar[i];  
+    }
+    
+    quicksort(ar,0,n-1);
+    
+    for(i=0;i<n;i++)
+    cout<<ar[i]<<" ";
+    
+    return 0;
+}
