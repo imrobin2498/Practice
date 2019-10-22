@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string str; 
+    cout<<"enter String\n";
+    getline(cin,str);
+    int i,c=0,x,count[26]={0};
+    
+    while(str[c]!='\0')
+    {
+        if(tolower(str[c])>='a'&& tolower(str[c])<='z')
+        {
+            x=tolower(str[c])-'a';
+            count[x]++;
+        }
+        c++;
+    }
+    
+    for(i=0;i<26;i++)
+    {
+        cout<<char(i+'a')<<"->"<<count[i]<<endl;
+    }
+    
+    return 0;
+}
