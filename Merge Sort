@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include<iostream>
+using namespace std;
+
+void merge(int A[],int start,int end,int mid)
+{
+    int p=start;
+    int q=mid+1;
+    int k=0;
+    int B[end-start+1];
+    
+  for(int i=start;i<=end;i++)
+  {
+      
+    if(p>mid)
+    B[k++]=A[q++];
+    
+    else if(q>end)
+    B[k++]=A[p++];
+    
+    else if(A[p]<A[q])
+    B[k++]=A[p++];
+    
+    else
+    B[k++]=A[q++];
+    
+  }
+    
+    for(int p=0;p<k;p++ )
+      A[start++]=B[p];
+    
+    
+    
+}
+
+
+void mergesort(int A[],int start,int end)
+{
+    if(start<end)
+    {
+        int mid=(start+end)/2;
+        mergesort(A,start,mid);
+        mergesort(A,mid+1,end);
+        
+        merge(A,start,end,mid);
+    }
+}
+
+int main()
+{
+    int n,i;
+    cout<<"enter size:\n";
+    cin>>n;
+    int ar[n];
+    cout<<"ENTER elements:\n";
+    for(i=0;i<n;i++)
+    {
+        cin>>ar[i];  
+    }
+    
+    mergesort(ar,0,n);
+    
+    for(i=0;i<n;i++)
+    cout<<ar[i]<<" ";
+    
+    return 0;
+}
