@@ -133,6 +133,53 @@ void del_end()
     }
 }
 
+void del_at_pos(int pos)
+{
+    NODE* temp=START;
+    if(START==NULL)
+    {
+        cout<<"Invalid Positon";
+    }
+    else if(START->link==NULL&&pos==1)
+    {
+        START=NULL;
+        delete(temp);
+        return;
+    }
+    
+    else if(START->link!=NULL&&pos==1)
+    {
+        START=START->link;
+        delete(temp);
+    }
+    else
+    {   int c=1;
+        temp=START;
+        while(temp!=NULL&&c!=(pos-1))
+        {
+            temp=temp->link;
+            c++;
+        }
+        
+        NODE* t2=temp->link;
+        
+        if(t2->link!=NULL)
+        {
+            temp->link=t2->link;
+            delete(t2);
+        }
+        
+        else
+        {
+        temp->link=NULL;
+        delete(t2);
+        }
+        
+    }
+    
+}
+
+
 void display()
 {
     NODE* temp=NULL; 
@@ -190,7 +237,7 @@ break;
 case 6:
 cout<<"Enter the position\n";
 cin>>pos;
-//delpos(pos);
+del_at_pos(pos);
 break;
 
 case 7:
