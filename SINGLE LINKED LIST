@@ -1,0 +1,202 @@
+#include<bits/stdc++.h>
+using namespace std;
+struct NODE
+{     
+     
+     int data;
+     NODE* link; 
+}*START=NULL,*temp=NULL;
+
+void insert_Beg(int item)
+{
+      NODE* NN=new NODE();
+      NN->data=item;
+      if(START==NULL)
+      {
+            NN->link=NULL;
+            START=NN;
+            return;
+      }
+      else 
+      {
+          NN->link=START;
+          START=NN;
+      }
+}
+
+void insert_end(int item)
+{
+    NODE* NN=new NODE();
+    NODE* temp=NULL;
+    NN->data=item;
+    NN->link=NULL;
+    if(START==NULL)
+    {
+        START=NN;
+        return;
+    }
+    else
+    {
+        temp=START;
+        while(temp->link!=NULL)
+        {
+            temp=temp->link;
+        }
+        temp->link=NN;
+        return;
+    }
+}
+
+void insert_at_pos(int item,int pos)
+{
+    int c=1;
+    NODE* NN=new NODE();
+    NN->data=item;
+    if(START==NULL&&pos>1)
+    {
+    cout<<"Invalid position\n";
+    return;
+    }
+    
+    else if(START==NULL&&pos==1)
+    {
+        NN->link=NULL;
+        START=NN;
+        return;
+    }
+    
+    else if(START!=NULL&&pos==1)
+    {
+        NN->link=START;
+        START=NN;
+        return;
+    }
+    
+    NODE* temp=START;
+    while(temp!=NULL&&c!=(pos-1))
+    {
+        temp=temp->link;
+        c++;
+    }
+    if(temp==NULL)
+    {
+        cout<<"Invalid position\n";
+    }
+    NN->link=temp->link;
+    temp->link=NN;
+}
+
+void del_beg()
+{
+    NODE* temp=NULL;
+    if(START==NULL)
+    {
+    cout<<"Linked List is EMPTY\n";
+    return;
+    }
+    
+    else{
+        temp=START;
+        START=START->link;
+        delete(temp);
+    }
+}
+
+void del_end()
+{
+    if(START==NULL)
+    {
+        cout<<"Linked List is EMPTY\n";
+        return;
+    }
+    
+    else if(START->link==NULL)
+    {
+        temp=START;;
+        delete(temp);
+        START=NULL;
+    
+    }
+    
+    
+    else
+    {
+        NODE* t1=START;
+        NODE* t2=NULL;
+        while(t1->link!=NULL)
+        {
+            t2=t1;
+            t1=t1->link;
+        }
+        t2->link=NULL;
+        delete(t1);
+    }
+}
+
+void display()
+{
+    NODE* temp=NULL; 
+    if(START==NULL)
+    {
+    cout<<"LL is empty\n";
+    
+    }
+    temp=START;
+    while(temp!=NULL)
+        {
+            cout<<temp->data<<"->";
+            temp=temp->link;
+        }
+    
+}
+
+
+int main()
+{
+int ch,x,pos;
+while(ch!=8)
+{
+cout<<"\n Enter you choice\n";
+cout<<"\n 1 INSERT AT BEGINNING\n 2 INSERT AT END\n 3 INSERT AT POSITION\n 4 DELETE AT BEGINNING\n 5 DELETE AT END\n 6 DELETE AT POSITION\n 7 DISPLAY\n 8 EXIT\n";
+cin>>ch;
+switch(ch)
+{
+case 1:
+cout<<"Enter the value\n";
+cin>>x;
+insert_Beg(x);
+break;
+
+case 2:
+cout<<"Enter the value\n";
+cin>>x;
+insert_end(x);
+break;
+
+case 3:
+cout<<"Enter the value and the position\n";
+cin>>x>>pos;
+insert_at_pos(x,pos);
+break;
+
+case 4:
+del_beg();
+break;
+
+case 5:
+del_end();
+break;
+
+case 6:
+cout<<"Enter the position\n";
+cin>>pos;
+//delpos(pos);
+break;
+
+case 7:
+display();
+break;
+}
+}
+ return 0;
+}
