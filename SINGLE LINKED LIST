@@ -1,8 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 struct NODE
-{     
-     
+{          
      int data;
      NODE* link; 
 }*START=NULL,*temp=NULL;
@@ -197,14 +196,34 @@ void display()
     
 }
 
+void rever()
+{
+     
+    if(START==NULL)
+    {
+    cout<<"LL is empty\n";
+    
+    }
+    temp=START; 
+    NODE *prev=NULL, *next=NULL;
+        while(temp!=NULL)
+        {
+            next=temp->link;
+            temp->link=prev;
+            prev=temp;
+            temp=next;
+        }
+            START=prev;
+}
+
 
 int main()
 {
 int ch,x,pos;
-while(ch!=8)
+while(ch!=9)
 {
 cout<<"\n Enter you choice\n";
-cout<<"\n 1 INSERT AT BEGINNING\n 2 INSERT AT END\n 3 INSERT AT POSITION\n 4 DELETE AT BEGINNING\n 5 DELETE AT END\n 6 DELETE AT POSITION\n 7 DISPLAY\n 8 EXIT\n";
+cout<<"\n 1 INSERT AT BEGINNING\n 2 INSERT AT END\n 3 INSERT AT POSITION\n 4 DELETE AT BEGINNING\n 5 DELETE AT END\n 6 DELETE AT POSITION\n 7 DISPLAY\n 8.REVERSE\n 9.EXIT \n";
 cin>>ch;
 switch(ch)
 {
@@ -242,6 +261,10 @@ break;
 
 case 7:
 display();
+break;
+
+case 8:
+rever();;
 break;
 }
 }
